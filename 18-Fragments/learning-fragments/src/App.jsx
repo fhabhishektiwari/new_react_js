@@ -5,36 +5,25 @@ import Container from "./components/Container";
 import Foodinput from "./components/Foodinput";
 import { useState } from "react";
 const App = () => {
-  // const foodItems = ["Dal", "Green Vegetables", "Curd", "Roti", "Rice"];
-  // const foodItems = [];
-  // let textStateArr = useState("Food Item Entered by user");
-  // let textToShow = textStateArr[0];
-  // let setTextState = textStateArr[1];
+  let [foodItems, setFoodItems] = useState([]);
 
-  let [textToShow, setTextState] = useState("Food Item Entered by user");
-  let [foodItems, setFoodItems] = useState(["Dal", "Green Vegetables", "Curd"]);
-
-  const handleOnChange = (event) => {
-    // console.log(event);
-    console.log(event.target.value);
-    setTextState(event.target.value);
+  const onKeyDown = (event) => {
+    if (event.key === "Enter") {
+      let newFoodItem = event.target.value;
+      event.target.value = "";
+      let newItems = [...foodItems, newFoodItem];
+      setFoodItems(newItems);
+    }
   };
 
   return (
     <>
       <Container>
         <h1 className={`display-6 ${styles.kgTitle}`}>Healty Food Items</h1>
-        <Foodinput handleOnChange={handleOnChange} />
-        {/* {textToShow} */}
+        <Foodinput handleKeyDown={onKeyDown} />
         <ErrorMessage items={foodItems} />
         <FoodItems items={foodItems} />
       </Container>
-      {/* <Container>
-        <p>
-          Above is the list of healthy foods that are good for your health and
-          well being.
-        </p>
-      </Container> */}
     </>
   );
 };
