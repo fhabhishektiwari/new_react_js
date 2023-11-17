@@ -1,0 +1,17 @@
+.buttonsContainer {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.kgButton {
+  width: 56px;
+  padding: 8px 23px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  margin: 4px;
+}
+
+.kgButton:active {
+  background-color: #5e5e5e;
+}

@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.calculator {
+  width: 218px;
+  border: 1px solid #5d5d5d;
+  padding: 8px 12px;
+  margin: 35px auto;
+}
