@@ -2,8 +2,11 @@ import Button from "./Button";
 import PropTypes from "prop-types";
 import { MdDelete } from "react-icons/md";
 import styles from "./TodoItem.module.css";
+import { useContext } from "react";
+import { TodoItemsContext } from "../store/todo-items-store";
 
-const TodoItem = ({ todoName, todoDate, onDeleteClick }) => {
+const TodoItem = ({ todoName, todoDate }) => {
+  const { deleteItem } = useContext(TodoItemsContext);
   return (
     <div className="container">
       <div className="row mt-3">
@@ -13,7 +16,7 @@ const TodoItem = ({ todoName, todoDate, onDeleteClick }) => {
           <Button
             text={"Delete"}
             className={"btn btn-danger custom-btn"}
-            onClick={() => onDeleteClick(todoName)}
+            onClick={() => deleteItem(todoName)}
           >
             <MdDelete />
             <span className={styles.dlBtn}>Delete</span>
@@ -27,7 +30,6 @@ const TodoItem = ({ todoName, todoDate, onDeleteClick }) => {
 TodoItem.propTypes = {
   todoName: PropTypes.string.isRequired,
   todoDate: PropTypes.string.isRequired,
-  onDeleteClick: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

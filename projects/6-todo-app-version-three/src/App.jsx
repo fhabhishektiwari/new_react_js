@@ -4,29 +4,34 @@ import "./App.css";
 import TodoItems from "./components/TodoItems";
 import { useState } from "react";
 import WelcomeMessage from "./components/WelcomeMessage";
+import { TodoItemsContext } from "./store/todo-items-store";
 function App() {
   const [todoItems, setTodoitems] = useState([]);
-
-  const handleNewItem = (itemName, itemDueDate) => {
-    // setTodoitems(newTodoItems);
+  const addNewItem = (itemName, itemDueDate) => {
     setTodoitems((currValue) => [
       ...currValue,
       { name: itemName, dueDate: itemDueDate },
     ]);
   };
 
-  const handleDelete = (todoItemName) => {
+  const deleteItem = (todoItemName) => {
     const newTodoItems = todoItems.filter((item) => item.name !== todoItemName);
     setTodoitems(newTodoItems);
   };
 
   return (
-    <>
+    <TodoItemsContext.Provider
+      value={{
+        todoItems,
+        addNewItem,
+        deleteItem, //when key and value are same so you give direct value
+      }}
+    >
       <AppName />
-      <AddTodo onNewItem={handleNewItem} />
-      {todoItems.length === 0 && <WelcomeMessage />}
-      <TodoItems todoItems={todoItems} onDeleteClick={handleDelete} />
-    </>
+      <AddTodo />
+      <WelcomeMessage />
+      <TodoItems />
+    </TodoItemsContext.Provider>
   );
 }
 

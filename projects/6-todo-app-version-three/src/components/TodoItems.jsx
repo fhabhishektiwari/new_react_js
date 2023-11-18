@@ -1,6 +1,8 @@
+import { useContext } from "react";
+import { TodoItemsContext } from "../store/todo-items-store";
 import TodoItem from "./TodoItem";
-import PropTypes from "prop-types";
-const TodoItems = ({ todoItems, onDeleteClick }) => {
+const TodoItems = () => {
+  const { todoItems } = useContext(TodoItemsContext);
   return (
     <>
       {todoItems.map((item) => (
@@ -8,21 +10,10 @@ const TodoItems = ({ todoItems, onDeleteClick }) => {
           key={item.name}
           todoName={item.name}
           todoDate={item.dueDate}
-          onDeleteClick={onDeleteClick}
         />
       ))}
     </>
   );
-};
-
-TodoItems.propTypes = {
-  todoItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      dueDate: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  onDeleteClick: PropTypes.func.isRequired,
 };
 
 export default TodoItems;
