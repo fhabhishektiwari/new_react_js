@@ -1,4 +1,7 @@
-import { useState, useRef } from "react";
+import {
+  // useState,
+  useRef,
+} from "react";
 import Button from "./Button";
 import PropTypes from "prop-types";
 import { IoMdAdd } from "react-icons/io";
@@ -71,7 +74,7 @@ function AddTodo({ onNewItem }) {
     </div>
   );
 }
-// AddTodo.propTypes = {
-//   onNewItem: PropTypes.func.isRequired,
-// };
+AddTodo.propTypes = {
+  onNewItem: PropTypes.func.isRequired,
+};
 export default AddTodo;
