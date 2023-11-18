@@ -8,13 +8,11 @@ function App() {
   const [todoItems, setTodoitems] = useState([]);
 
   const handleNewItem = (itemName, itemDueDate) => {
-    if (itemName !== "" && itemDueDate !== "") {
-      const newTodoItems = [
-        ...todoItems,
-        { name: itemName, dueDate: itemDueDate },
-      ];
-      setTodoitems(newTodoItems);
-    }
+    // setTodoitems(newTodoItems);
+    setTodoitems((currValue) => [
+      ...currValue,
+      { name: itemName, dueDate: itemDueDate },
+    ]);
   };
 
   const handleDelete = (todoItemName) => {
