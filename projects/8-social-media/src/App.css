@@ -1,0 +1,42 @@
+.app-container {
+  display: flex;
+}
+
+.content {
+  width: 100%;
+}
+
+.sidebar {
+  width: 280px;
+  height: 100vh;
+}
+
+.navigation {
+  display: flex !important;
+  align-items: center;
+}
+
+.sidebar-nav-link {
+  margin-left: 8px;
+}
+
+.icon-font {
+  font-size: 20px;
+}
+.card {
+  min-height: 240px;
+  max-height: 280px;
+  width: 18rem;
+}
+.reaction {
+  margin-top: 18px;
+  /* margin-bottom: 12px; */
+  display: block;
+  padding: 8px;
+  /* border: 1px solid #000; */
+  /* text-align: center; */
+  border-radius: 6px;
+  background-color: rgb(72, 194, 180);
+  color: #fff;
+  /* box-shadow: 0 0 2px #000; */
+}
