@@ -1,10 +1,8 @@
 import { FaHome } from "react-icons/fa";
 import { IoIosCreate } from "react-icons/io";
+import { Link } from "react-router-dom";
 
-const Sidebar = ({ selectedTab, setSelectedTab }) => {
-  const handleOnClick = (tabname) => {
-    setSelectedTab(tabname);
-  };
+const Sidebar = () => {
   return (
     <div
       className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar"
@@ -21,28 +19,21 @@ const Sidebar = ({ selectedTab, setSelectedTab }) => {
       </a>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
-        <li className="nav-item" onClick={() => handleOnClick("Home")}>
-          <a
-            href="#"
-            className={`nav-link text-white ${
-              selectedTab === "Home" && "active"
-            } navigation`}
+        <li className="nav-item">
+          <Link
+            to="/"
+            className="nav-link text-white navigation"
             aria-current="page"
           >
             <FaHome className="icon-font" />
             <span className="sidebar-nav-link">Home</span>
-          </a>
+          </Link>
         </li>
-        <li onClick={() => handleOnClick("Create Post")}>
-          <a
-            href="#"
-            className={`nav-link text-white ${
-              selectedTab === "Create Post" && "active"
-            } navigation`}
-          >
+        <li>
+          <Link to="/create-post" className="nav-link text-white navigation">
             <IoIosCreate className="icon-font" />
             <span className="sidebar-nav-link">Create Post</span>
-          </a>
+          </Link>
         </li>
       </ul>
       <hr />

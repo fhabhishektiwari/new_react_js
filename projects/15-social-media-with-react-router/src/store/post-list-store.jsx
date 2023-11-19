@@ -3,7 +3,6 @@ import { createContext } from "react";
 
 export const PostList = createContext({
   postList: [],
-  fetching: false,
   addPost: () => {},
   deletePost: () => {},
 });
@@ -23,7 +22,6 @@ const postListReducer = (currPostList, action) => {
 };
 const PostListProvider = ({ children }) => {
   const [postList, dispatchPostList] = useReducer(postListReducer, []);
-  const [fetching, setfetching] = useState(false);
 
   const addPost = (post) => {
     dispatchPostList({
@@ -32,14 +30,14 @@ const PostListProvider = ({ children }) => {
     });
   };
 
-  const addInitialPosts = (posts) => {
-    dispatchPostList({
-      type: "ADD_INITIAL_POSTS",
-      payload: {
-        posts,
-      },
-    });
-  };
+  // const addInitialPosts = (posts) => {
+  //   dispatchPostList({
+  //     type: "ADD_INITIAL_POSTS",
+  //     payload: {
+  //       posts,
+  //     },
+  //   });
+  // };
 
   // useCallback is using for performace optimizing
   const deletePost = useCallback(
@@ -54,27 +52,26 @@ const PostListProvider = ({ children }) => {
     [dispatchPostList]
   );
 
-  useEffect(() => {
-    setfetching(true);
-    const controller = new AbortController();
-    const signal = controller.signal;
-    fetch("https://dummyjson.com/posts", { signal })
-      .then((res) => res.json())
-      .then((data) => {
-        addInitialPosts(data.posts);
-        setfetching(false);
-      });
-    return () => {
-      console.log("Cleaning up useEffect.");
-      controller.abort();
-    };
-  }, []);
+  // useEffect(() => {
+  //   setfetching(true);
+  //   const controller = new AbortController();
+  //   const signal = controller.signal;
+  //   fetch("https://dummyjson.com/posts", { signal })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       addInitialPosts(data.posts);
+  //       setfetching(false);
+  //     });
+  //   return () => {
+  //     console.log("Cleaning up useEffect.");
+  //     controller.abort();
+  //   };
+  // }, []);
 
   return (
     <PostList.Provider
       value={{
         postList,
-        fetching,
         addPost,
         deletePost,
       }}
